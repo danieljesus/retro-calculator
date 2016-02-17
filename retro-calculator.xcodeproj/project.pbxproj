@@ -13,6 +13,7 @@
 		651B49051C72974300E4EBBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 651B49041C72974300E4EBBD /* Assets.xcassets */; };
 		651B49081C72974300E4EBBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 651B49061C72974300E4EBBD /* LaunchScreen.storyboard */; };
 		651B49101C73DCE000E4EBBD /* Minecraft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 651B490F1C73DCE000E4EBBD /* Minecraft.ttf */; };
+		651B49121C73E25100E4EBBD /* btn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 651B49111C73E25100E4EBBD /* btn.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		651B49071C72974300E4EBBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		651B49091C72974300E4EBBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		651B490F1C73DCE000E4EBBD /* Minecraft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Minecraft.ttf; sourceTree = "<group>"; };
+		651B49111C73E25100E4EBBD /* btn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = btn.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				651B490F1C73DCE000E4EBBD /* Minecraft.ttf */,
+				651B49111C73E25100E4EBBD /* btn.wav */,
 				651B48FD1C72974300E4EBBD /* AppDelegate.swift */,
 				651B48FF1C72974300E4EBBD /* ViewController.swift */,
 				651B49011C72974300E4EBBD /* Main.storyboard */,
@@ -126,6 +129,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				651B49121C73E25100E4EBBD /* btn.wav in Resources */,
 				651B49081C72974300E4EBBD /* LaunchScreen.storyboard in Resources */,
 				651B49051C72974300E4EBBD /* Assets.xcassets in Resources */,
 				651B49101C73DCE000E4EBBD /* Minecraft.ttf in Resources */,
