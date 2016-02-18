@@ -23,11 +23,10 @@ class ViewController: UIViewController {
     
     var btnSound: AVAudioPlayer!
     
-    var runningNumber = ""
-    var leftValStr = ""
-    var rightValStr = ""
+    var numberDisplayed: Double = 0
+    var memory: Double?
+
     var currentOperation : Operation = Operation.Empty
-    var result = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +46,8 @@ class ViewController: UIViewController {
     @IBAction func numberPressed(btn: UIButton!){
         playSound()
         
-        runningNumber += "\(btn.tag)"
-        outputLbl.text = runningNumber
+        numberDisplayed = numberDisplayed * 10 + Double(btn.tag)
+        printTheScreen()
     }
    
     @IBAction func onDividePressed(sender: UIButton) {
@@ -68,41 +67,44 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onEqualPressed(sender: UIButton) {
-        processOperation(currentOperation)
+        playSound()
+        if Operation.Empty != currentOperation && nil != memory {
+            getResult()
+        }
+    }
+    
+    func getResult(){
+        var result: Double = 0
+        if Operation.Multiply == currentOperation {
+            result = memory! * numberDisplayed
+        } else if Operation.Divide == currentOperation {
+            result = memory! / numberDisplayed
+        } else if Operation.Add == currentOperation {
+            result = memory! + numberDisplayed
+        } else if Operation.Substract == currentOperation {
+            result = memory! - numberDisplayed
+        }
+        numberDisplayed = result
+        printTheScreen()
+        
     }
     
     func processOperation(operation: Operation) {
         playSound()
         
-        if Operation.Empty != currentOperation {
-            
-            if "" != runningNumber {
-                rightValStr = runningNumber
-                runningNumber = ""
-                
-                if Operation.Multiply == operation {
-                    result = "\(Double(leftValStr)! * Double(rightValStr)!)"
-                } else if Operation.Divide == operation {
-                    result = "\(Double(leftValStr)! / Double(rightValStr)!)"
-                } else if Operation.Substract == operation {
-                    result = "\(Double(leftValStr)! - Double(rightValStr)!)"
-                } else if Operation.Add == operation {
-                    result = "\(Double(leftValStr)! + Double(rightValStr)!)"
-                }
-                
-                leftValStr = result
-                outputLbl.text = result
-            }
-
-            
-            currentOperation = operation
-            
-        } else {
-            leftValStr = runningNumber
-            runningNumber = ""
-            
-            currentOperation = operation
-        }
+        memory = numberDisplayed;
+        currentOperation = operation;
+        numberDisplayed=0;
+        cleanScreen()
+        
+    }
+    
+    func printTheScreen(){
+        outputLbl.text = String(format: "%g", numberDisplayed)
+    }
+    
+    func cleanScreen(){
+        outputLbl.text = ""
     }
     
     func playSound() {
