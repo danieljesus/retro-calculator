@@ -46,6 +46,16 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func clearData(sender: UIButton) {
+        playSound()
+        numberDisplayed = 0
+        memoryerDisplayed = 0
+        leftNumber = nil
+        rightNumber = nil
+        booleanPrepareToCleanScreen = false
+        printTheScreen()
+    }
+    
     @IBAction func numberPressed(btn: UIButton!){
         playSound()
         if booleanPrepareToCleanScreen {
