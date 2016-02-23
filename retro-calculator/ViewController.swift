@@ -24,7 +24,10 @@ class ViewController: UIViewController {
     var btnSound: AVAudioPlayer!
     
     var numberDisplayed: Double = 0
-    var memory: Double?
+    var memoryerDisplayed: Double = 0
+    var leftNumber: Double?
+    var rightNumber: Double?
+    var booleanPrepareToCleanScreen = false
 
     var currentOperation : Operation = Operation.Empty
     
@@ -45,8 +48,13 @@ class ViewController: UIViewController {
     
     @IBAction func numberPressed(btn: UIButton!){
         playSound()
-        
-        numberDisplayed = numberDisplayed * 10 + Double(btn.tag)
+        if booleanPrepareToCleanScreen {
+            cleanScreen()
+            booleanPrepareToCleanScreen = false
+            numberDisplayed = Double(btn.tag)
+        }else{
+            numberDisplayed = numberDisplayed * 10 + Double(btn.tag)
+        }
         printTheScreen()
     }
    
@@ -68,7 +76,10 @@ class ViewController: UIViewController {
     
     @IBAction func onEqualPressed(sender: UIButton) {
         playSound()
-        if Operation.Empty != currentOperation && nil != memory {
+        if Operation.Empty != currentOperation && nil != leftNumber {
+            if nil == rightNumber {
+                rightNumber = numberDisplayed;
+            }
             getResult()
         }
     }
@@ -76,15 +87,17 @@ class ViewController: UIViewController {
     func getResult(){
         var result: Double = 0
         if Operation.Multiply == currentOperation {
-            result = memory! * numberDisplayed
+            result = leftNumber! * rightNumber!
         } else if Operation.Divide == currentOperation {
-            result = memory! / numberDisplayed
+            result = leftNumber! / rightNumber!
         } else if Operation.Add == currentOperation {
-            result = memory! + numberDisplayed
+            result = leftNumber! + rightNumber!
         } else if Operation.Substract == currentOperation {
-            result = memory! - numberDisplayed
+            result = leftNumber! - rightNumber!
         }
         numberDisplayed = result
+        leftNumber = result
+        
         printTheScreen()
         
     }
@@ -92,11 +105,10 @@ class ViewController: UIViewController {
     func processOperation(operation: Operation) {
         playSound()
         
-        memory = numberDisplayed;
+        leftNumber = numberDisplayed;
         currentOperation = operation;
-        numberDisplayed=0;
-        cleanScreen()
-        
+        booleanPrepareToCleanScreen = true
+
     }
     
     func printTheScreen(){
