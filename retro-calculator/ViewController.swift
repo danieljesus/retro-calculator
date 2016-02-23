@@ -104,7 +104,7 @@ class ViewController: UIViewController {
     
     func processOperation(operation: Operation) {
         playSound()
-        
+        rightNumber = nil
         leftNumber = numberDisplayed;
         currentOperation = operation;
         booleanPrepareToCleanScreen = true
